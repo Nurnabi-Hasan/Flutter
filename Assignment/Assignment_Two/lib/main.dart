@@ -1,5 +1,8 @@
+import 'dart:ui_web';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 main() {
   runApp(myApp());
@@ -20,16 +23,15 @@ class Homeactivity extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Greetng App"),
-        titleSpacing: 30,
+        title: Text("Greeting App"),
+
       ),
       body: Center(
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              'Hello, World',
+              'Hello, World!',
               style: TextStyle(
                 color: Colors.red,
                 fontSize: 18,
@@ -49,7 +51,7 @@ class Homeactivity extends StatelessWidget {
               height: 16,
             ),
             Image.asset(
-              "assets/image/flutter.jpg",
+              "assets/image/flutter.png",
               width: 150,
             ),
             SizedBox(
@@ -58,7 +60,7 @@ class Homeactivity extends StatelessWidget {
             ElevatedButton(
               onPressed: () {
                 ScaffoldMessenger.of(context)
-                    .showSnackBar(SnackBar(content: Text('Button Pewssed!')));
+                    .showSnackBar(SnackBar(content: Text('Button Pressed!')));
               },
               child: Text('Press Me'),
               style: ElevatedButton.styleFrom(backgroundColor: Colors.green),
@@ -69,3 +71,5 @@ class Homeactivity extends StatelessWidget {
     );
   }
 }
+
+
