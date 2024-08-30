@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
+/*
 void main() {
   runApp(myApp());
 }
@@ -107,6 +107,63 @@ else
             }
     }
     )
+    );
+  }
+}
+*/
+
+void main() {
+  runApp(CounterApp());
+}
+
+class CounterApp extends StatelessWidget {
+  const CounterApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: HomeScreen(),
+    );
+  }
+}
+
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key});
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  int counter =0;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.blue,
+        title: Text('Counter App'),
+      ),
+
+      body:Center(
+        child: Text('Counter $counter'),
+      ),
+
+      floatingActionButton:Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          FloatingActionButton(onPressed: (){counter++; setState(() {
+          });}, child: Icon(Icons.add),),
+
+          SizedBox(width: 20,),
+
+          FloatingActionButton(onPressed: (){counter--; setState(() {
+
+          });}, child: Icon(Icons.remove),)
+        ],
+      )
+
+
     );
   }
 }
