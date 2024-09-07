@@ -34,6 +34,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 color: Colors.black, fontWeight: FontWeight.bold, fontSize: 24),
           ),
         ),
+
+        // Cart Iteam List View
         Expanded(
             child: ListView.builder(
                 itemBuilder: (contex, index) {
@@ -79,6 +81,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                     Text('${additeam.size}'),
                                   ],
                                 ),
+
+                                // Product Quantity and Quantity Incress/decress button
+
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
@@ -112,6 +117,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                 widthFactor: 1,
                               ),
                             ),
+
+                          //more Button and Single Item Total Price
                             Column(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
@@ -130,6 +137,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   );
                 },
                 itemCount: iteamList.length)),
+
+        // Total Cost and CheckOut Button
         Container(
           alignment: Alignment.bottomCenter,
           child: Padding(
@@ -145,7 +154,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       Text(
                         'Total Cost: ',
                         style: TextStyle(
-                            fontSize: 16, fontWeight: FontWeight.bold),
+                            fontSize: 16, fontWeight: FontWeight.bold, color: Colors.grey),
                       ),
                       Text(
                         '\$' + '${calculateTotal()}',
@@ -178,6 +187,8 @@ class _HomeScreenState extends State<HomeScreen> {
       ]),
     );
   }
+
+  // Method for Add Iteam To The List
 
   void _addItemToList() {
     addIteam item1 = addIteam(
