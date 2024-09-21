@@ -37,70 +37,73 @@ class _productListScreenState extends State<productListScreen> {
         actions: [
           IconButton(onPressed: (){
             getProduct();
-          }, icon: Icon(Icons.refresh_outlined)),
+          }, icon: Icon(Icons.refresh_outlined), color: Colors.white,),
         ],
       ),
 
-      body: _inprogress?Center(child: CircularProgressIndicator(color: Colors.blue,),) : Padding(
-          padding: const EdgeInsets.all(10.0),
-          child: ListView.separated(
-            itemCount: productList.length,
-            itemBuilder: (contex, index) {
-              final product = productList[index] as Map;
-              final id = product['_id'] as String;
-              return ListTile(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                textColor: Colors.black,
-                tileColor: Colors.white,
-                title: Text('${product['ProductName']}'),
-                subtitle: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text('Product Code: ${product['ProductCode']}'),
-                    Text('Quantity: ${product['Qty']}'),
-                    Text('Unit Price: \$${product['UnitPrice']}'),
-                    Text('Total Price: \$${product['TotalPrice']}'),
+      body: _inprogress?Center(child: CircularProgressIndicator(color: Colors.deepPurple.shade900,),) : RefreshIndicator(
+        onRefresh: getProduct,
+        child: Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: ListView.separated(
+              itemCount: productList.length,
+              itemBuilder: (contex, index) {
+                final product = productList[index] as Map;
+                final id = product['_id'] as String;
+                return ListTile(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  textColor: Colors.black,
+                  tileColor: Colors.white,
+                  title: Text('${product['ProductName']}'),
+                  subtitle: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text('Product Code: ${product['ProductCode']}'),
+                      Text('Quantity: ${product['Qty']}'),
+                      Text('Unit Price: \$${product['UnitPrice']}'),
+                      Text('Total Price: \$${product['TotalPrice']}'),
 
-                    Divider(),
+                      Divider(),
 
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        TextButton.icon(onPressed: () {
-                          NavigateToeidtPage(product);
-                        },
-                          icon: Icon(Icons.edit,),
-                          label: Text('Edit'),),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          TextButton.icon(onPressed: () {
+                            NavigateToeidtPage(product);
+                          },
+                            icon: Icon(Icons.edit,),
+                            label: Text('Edit'),),
 
 
-                        TextButton.icon(onPressed: () {deleteProduct(id);},
-                          icon: Icon(Icons.delete, color: Colors.red.shade800,),
-                          label: Text('Delete', style: TextStyle(
-                              color: Colors.red.shade800),),),
-                      ],
-                    )
+                          TextButton.icon(onPressed: () {deleteProduct(id);},
+                            icon: Icon(Icons.delete, color: Colors.red.shade800,),
+                            label: Text('Delete', style: TextStyle(
+                                color: Colors.red.shade800),),),
+                        ],
+                      )
 
-                  ],
-                ),
+                    ],
+                  ),
 
-              );
-            },
-            separatorBuilder: (context, index) {
-              return SizedBox(height:8);
-            },
-          )
+                );
+              },
+              separatorBuilder: (context, index) {
+                return SizedBox(height:8);
+              },
+            )
+        ),
       ),
 
       floatingActionButton: FloatingActionButton(
         onPressed: () {NavigateToaddPage();},
-        child: Icon(Icons.add),
+        child: Text('Add', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),),//Icon(Icons.add, color: Colors.white,),
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(45),
+          borderRadius: BorderRadius.circular(100),
         ),
         elevation: 50,
-        backgroundColor: Colors.blue.shade800,
+        backgroundColor: Colors.deepPurple.shade900,
       ),
 
     );

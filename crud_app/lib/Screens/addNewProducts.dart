@@ -142,7 +142,7 @@ class _addNewProductScreenState extends State<addNewProductScreen> {
           SizedBox(
             height: 16,
           ),
-          _inprogress ? CircularProgressIndicator(color: Colors.blue.shade800,) : ElevatedButton(
+          _inprogress ? CircularProgressIndicator(color: Colors.deepPurple.shade900,) : ElevatedButton(
             onPressed: _isEdit? onTapEditproduct : onTapAddProduct,
             child: Text(
                 _isEdit?'Update' : 'Add Product'),

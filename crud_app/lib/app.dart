@@ -13,7 +13,7 @@ class CrudApp extends StatelessWidget {
       theme: ThemeData(
         brightness: Brightness.light,
         appBarTheme: AppBarTheme(
-          backgroundColor: Colors.blue,
+          backgroundColor: Colors.deepPurple.shade900,
           elevation: 50,
           titleSpacing: 5,
           titleTextStyle: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold,),
@@ -22,51 +22,51 @@ class CrudApp extends StatelessWidget {
 
         inputDecorationTheme: InputDecorationTheme(
             border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(8),
+                borderRadius: BorderRadius.circular(0),
                 borderSide: BorderSide(
-                  width: 1,
-                  color: Colors.black,
+                  width: 2,
+                  color: Colors.deepPurple.shade900,
                 )),
             disabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(8),
+                borderRadius: BorderRadius.circular(0),
                 borderSide: BorderSide(
-                  width: 1,
+                  width: 2,
                   color: Colors.white,
                 )),
 
             enabledBorder:OutlineInputBorder(
-                borderRadius: BorderRadius.circular(8),
+                borderRadius: BorderRadius.circular(0),
                 borderSide: BorderSide(
-                  width: 1,
+                  width: 2,
                   color: Colors.grey,
                 )) ,
 
             focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(8),
+                borderRadius: BorderRadius.circular(6),
                 borderSide: BorderSide(
-                  width: 1,
-                  color: Colors.grey.shade800,
+                  width: 2,
+                  color: Colors.deepPurple.shade900,
                 ))
 
         ),
 
         elevatedButtonTheme: ElevatedButtonThemeData(
             style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.blue,
+              backgroundColor: Colors.deepPurple.shade900,
               foregroundColor: Colors.white,
               textStyle: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
               elevation: 2,
               shadowColor: Colors.green,
               minimumSize: Size(double.infinity,40),
               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(8),
+                borderRadius: BorderRadius.circular(0),
               )
             )
         ),
 
         textButtonTheme: TextButtonThemeData(
             style: TextButton.styleFrom(
-                foregroundColor: Colors.purple,
+                foregroundColor: Colors.green,
                 elevation: 20,
                 textStyle: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
               // backgroundColor: Colors.grey
