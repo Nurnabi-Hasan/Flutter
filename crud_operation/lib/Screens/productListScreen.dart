@@ -11,6 +11,8 @@ import 'editProductScreen.dart';
 class ProductListScreen extends StatefulWidget {
   const ProductListScreen({super.key});
 
+
+
   @override
   State<ProductListScreen> createState() => _ProductListScreenState();
 }
@@ -20,12 +22,6 @@ class _ProductListScreenState extends State<ProductListScreen> {
   List <Products> productList=[];
 
   bool _inprogess = false;
-
-  @override
-  void initState() {
-    super.initState();
-    getProductList();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +40,55 @@ class _ProductListScreenState extends State<ProductListScreen> {
         child: ListView.separated(
           itemCount: productList.length,
           itemBuilder: (context, index) {
-            return  ProductItem(products:productList[index]);
+            final item = productList[index] as Map;
+            final id= item['_id'];
+            return  ListTile(
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+              tileColor: Colors.white,
+              //title:Text(productList[index].productName),
+              subtitle: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                //  Text('Product Code: ${productList[index].productCode}'),
+                  Text('Price: \$${item['unitPrice']}'),
+                  //Text('Quantity: ${productList[index].qty}'),
+                  //Text('Total Price: \$${productList[index].TotalPrice}'),
+                  const Divider(),
+                  ButtonBar(
+                    children: [
+                      TextButton.icon(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) {
+                              return const EditProductScreen();
+                            }),
+                          );
+                        },
+                        icon: const Icon(Icons.edit),
+                        label: const Text('Edit'),
+                      ),
+                      TextButton.icon(
+                        onPressed: () {
+                          setState(() {
+
+                          });
+
+                        },
+                        icon: const Icon(
+                          Icons.delete_outline,
+                          color: Colors.red,
+                        ),
+                        label: const Text(
+                          'Delete',
+                          style: TextStyle(color: Colors.red),
+                        ),
+                      ),
+                    ],
+                  )
+                ],
+              ),
+            );
           },
           separatorBuilder: (context, index) {
             return const SizedBox(height: 16);
@@ -67,7 +111,7 @@ class _ProductListScreenState extends State<ProductListScreen> {
 
   }
 
-  Future <void> getProductList() async{
+  Future <void> getProductList() asyncpr{
     _inprogess =true;
     setState(() {});
 
@@ -95,66 +139,8 @@ class _ProductListScreenState extends State<ProductListScreen> {
     }
     _inprogess = false;
     setState(() {});
+
   }
+
 }
 
-class ProductItem extends StatefulWidget {
-  const ProductItem({
-    super.key, required this.products,
-  });
-
-  final Products products;
-
-  @override
-  State<ProductItem> createState() => _ProductItemState();
-}
-
-class _ProductItemState extends State<ProductItem> {
-  @override
-  Widget build(BuildContext context) {
-    return ListTile(
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-      tileColor: Colors.white,
-      title:Text(widget.products.productName),
-      subtitle: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text('Product Code: ${widget.products.productCode}'),
-           Text('Price: \$${widget.products.unitPrice}'),
-           Text('Quantity: ${widget.products.qty}'),
-           Text('Total Price: \$${widget.products.TotalPrice}'),
-          const Divider(),
-          ButtonBar(
-            children: [
-              TextButton.icon(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) {
-                      return const EditProductScreen();
-                    }),
-                  );
-                },
-                icon: const Icon(Icons.edit),
-                label: const Text('Edit'),
-              ),
-              TextButton.icon(
-                onPressed: () {
-
-                },
-                icon: const Icon(
-                  Icons.delete_outline,
-                  color: Colors.red,
-                ),
-                label: const Text(
-                  'Delete',
-                  style: TextStyle(color: Colors.red),
-                ),
-              ),
-            ],
-          )
-        ],
-      ),
-    );
-  }
-}
