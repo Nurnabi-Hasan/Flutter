@@ -1,8 +1,9 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:task_manager/ui/screens/set_password_screen.dart';
+import 'package:task_manager/ui/screens/sign_in_screen.dart';
+
 import 'package:task_manager/ui/utils/app_color.dart';
 import '../widget/backgroud_Image.dart';
 
@@ -76,7 +77,7 @@ class _OtpVerifcationScreenState extends State<OtpVerifcationScreen> {
   }
 
   void _onTapSignInScreen(){
-    Navigator.pop(context);
+    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>const SignInScreen()));
   }
 
   Widget _buildOtpVerificationForm() {
@@ -114,6 +115,6 @@ class _OtpVerifcationScreenState extends State<OtpVerifcationScreen> {
   }
 
   void _onTapotpVerifyButton() {
-    Navigator.push(context, MaterialPageRoute(builder: (context)=>SetPasswordScreen()));
+    Navigator.push(context, MaterialPageRoute(builder: (context)=>const SetPasswordScreen()));
   }
 }

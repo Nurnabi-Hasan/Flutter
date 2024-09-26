@@ -1,6 +1,5 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:task_manager/ui/screens/otp_verification_screen.dart';
 import 'package:task_manager/ui/utils/app_color.dart';
 import '../widget/backgroud_Image.dart';
@@ -82,6 +81,7 @@ class _EmailVerifcationScreenState extends State<EmailVerifcationScreen> {
     return Column(
       children: [
         TextFormField(
+          keyboardType: TextInputType.emailAddress,
           decoration: const InputDecoration(
             hintText: 'Email',
           ),
@@ -100,6 +100,6 @@ class _EmailVerifcationScreenState extends State<EmailVerifcationScreen> {
   }
 
   void _onTapVerifyEmailButton() {
-    Navigator.push(context, MaterialPageRoute(builder: (context)=> OtpVerifcationScreen()));
+    Navigator.push(context, MaterialPageRoute(builder: (context)=> const OtpVerifcationScreen()));
   }
 }

@@ -1,6 +1,5 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:task_manager/ui/utils/app_color.dart';
 import '../widget/backgroud_Image.dart';
 
@@ -75,6 +74,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
     return Column(
       children: [
         TextFormField(
+          keyboardType: TextInputType.emailAddress,
           decoration: const InputDecoration(
             hintText: 'Email',
           ),
@@ -97,6 +97,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
         const SizedBox(height: 10,),
 
         TextFormField(
+          keyboardType: TextInputType.number,
           decoration: const InputDecoration(
             hintText: 'Phone',
           ),

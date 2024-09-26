@@ -15,7 +15,7 @@ class _TaskManagerAppState extends State<TaskManagerApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: SplashScreen(),
+      home: const SplashScreen(),
 
       theme: ThemeData(
 
@@ -31,7 +31,7 @@ class _TaskManagerAppState extends State<TaskManagerApp> {
 
   InputDecorationTheme _inputDecoration (){
 return InputDecorationTheme(
-  hintStyle: TextStyle(color: Colors.grey),
+  hintStyle: const TextStyle(color: Colors.grey),
     fillColor: Colors.white,
     filled: true,
     border: _inputBorder(),
@@ -51,10 +51,10 @@ return InputDecorationTheme(
 ElevatedButtonThemeData _elevatedButtonThemeData(){
     return ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
-          padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
           backgroundColor: AppColors.themeColor,
           foregroundColor: Colors.white,
-          fixedSize: Size.fromWidth(double.maxFinite),
+          fixedSize: const Size.fromWidth(double.maxFinite),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(8),
           )

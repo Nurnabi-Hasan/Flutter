@@ -1,6 +1,5 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:task_manager/ui/screens/sign_up_screen.dart';
 import 'package:task_manager/ui/utils/app_color.dart';
 import '../widget/backgroud_Image.dart';
@@ -58,7 +57,7 @@ class _SignInScreenState extends State<SignInScreen> {
   }
 
   void _onTapForgotPassword() {
-    Navigator.push(context, MaterialPageRoute(builder: (contex)=> EmailVerifcationScreen()));
+    Navigator.push(context, MaterialPageRoute(builder: (contex)=> const EmailVerifcationScreen()));
   }
 
   Widget _buildSignupSection() {
@@ -88,6 +87,7 @@ class _SignInScreenState extends State<SignInScreen> {
     return Column(
       children: [
         TextFormField(
+          keyboardType: TextInputType.emailAddress,
           decoration: const InputDecoration(
             hintText: 'Email',
           ),
@@ -96,6 +96,7 @@ class _SignInScreenState extends State<SignInScreen> {
           height: 10,
         ),
         TextFormField(
+          obscureText: true,
           decoration: const InputDecoration(
             hintText: 'Password',
           ),

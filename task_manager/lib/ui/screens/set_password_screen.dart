@@ -1,7 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:task_manager/ui/screens/otp_verification_screen.dart';
+import 'package:task_manager/ui/screens/sign_in_screen.dart';
 import 'package:task_manager/ui/utils/app_color.dart';
 import '../widget/backgroud_Image.dart';
 
@@ -75,7 +74,7 @@ class _SetPasswordScreenState extends State<SetPasswordScreen> {
   }
 
   void _onTapSignInScreen(){
-    Navigator.pop(context);
+    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>const SignInScreen()));
   }
 
   Widget _buildSetPasswordForm() {
@@ -87,7 +86,7 @@ class _SetPasswordScreenState extends State<SetPasswordScreen> {
           ),
         ),
 
-        SizedBox(height: 10),
+        const SizedBox(height: 10),
 
         TextFormField(
           decoration: const InputDecoration(
