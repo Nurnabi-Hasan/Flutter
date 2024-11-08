@@ -14,10 +14,10 @@ class BacgroundImage extends StatelessWidget {
     return Scaffold(
       body: Stack(
         children: [
-          SvgPicture.asset(AssetsPath.backgroundSvg,
-         // height: screenSize.height,
-            //width: screenSize.width,
-          fit:BoxFit.cover),
+           SvgPicture.asset(AssetsPath.backgroundSvg,
+            height: screenSize.height,
+             width: screenSize.width,
+            fit:BoxFit.cover),
           SafeArea(child: child),
         ],
       ),

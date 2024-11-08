@@ -1,8 +1,15 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:task_manager/data/models/network_response.dart';
+import 'package:task_manager/data/services/network_caller.dart';
+import 'package:task_manager/data/utils/urls.dart';
+import 'package:task_manager/ui/screens/otp_verification_screen.dart';
 import 'package:task_manager/ui/screens/sign_in_screen.dart';
 import 'package:task_manager/ui/utils/app_color.dart';
+import 'package:task_manager/ui/widget/center-circular_progress_indicatore.dart';
+import 'package:task_manager/ui/widget/showscakmessage.dart';
 import '../widget/backgroud_Image.dart';
+import 'email_verifcation_screen.dart';
 
 class SetPasswordScreen extends StatefulWidget {
   const SetPasswordScreen({super.key});
@@ -12,6 +19,15 @@ class SetPasswordScreen extends StatefulWidget {
 }
 
 class _SetPasswordScreenState extends State<SetPasswordScreen> {
+
+  String EmailAddress = EmailVerifcationScreen.emailAddress!;
+  String Otp = OtpVerifcationScreen.OTP!;
+
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  bool _setPasswordInprogress =false;
+  final TextEditingController _passwordTEController = TextEditingController();
+  final TextEditingController _confirmPasswordTEcontroller = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     TextTheme textTheme = Theme.of(context).textTheme;
@@ -78,34 +94,81 @@ class _SetPasswordScreenState extends State<SetPasswordScreen> {
   }
 
   Widget _buildSetPasswordForm() {
-    return Column(
-      children: [
-        TextFormField(
-          decoration: const InputDecoration(
-            hintText: 'Password',
+    return Form(
+      key: _formKey,
+      child: Column(
+        children: [
+          TextFormField(
+            controller: _passwordTEController,
+            autovalidateMode: AutovalidateMode.onUserInteraction,
+            decoration: const InputDecoration(
+              hintText: 'Password',
+            ),
+            validator: (String? value){
+              if(value?.isEmpty ?? true){
+                return 'Enter Password';
+              }
+            },
           ),
-        ),
 
-        const SizedBox(height: 10),
+          const SizedBox(height: 10),
 
-        TextFormField(
-          decoration: const InputDecoration(
-            hintText: 'Confirm Password',
+          TextFormField(
+            controller: _confirmPasswordTEcontroller,
+            autovalidateMode: AutovalidateMode.onUserInteraction,
+            decoration: const InputDecoration(
+              hintText: 'Confirm Password',
+            ),
+            validator: (String? value){
+              if(value?.isEmpty ?? true){
+                return 'Enter Password';
+              }
+            },
           ),
-        ),
-        const SizedBox(height: 24),
+          const SizedBox(height: 24),
 
-        ElevatedButton(
-          onPressed: _onTapSetPasswordButton,
-          child: const Text('Confirm'),
-        ),
-        const SizedBox(height: 16),
+          Visibility(
+            visible: !_setPasswordInprogress,
+            replacement: CenteredCircularProgressIndicator(),
+            child: ElevatedButton(
+              onPressed: _onTapSetPasswordButton,
+              child: const Text('Confirm'),
+            ),
+          ),
+          const SizedBox(height: 16),
 
-      ],
+        ],
+      ),
     );
   }
 
   void _onTapSetPasswordButton() {
-   //TODO: implement pass set
+  if(_formKey.currentState!.validate()){
+    _setPassword();
   }
+  }
+
+  Future<void> _setPassword()async{
+    _setPasswordInprogress = true;
+    setState(() {});
+
+    Map<String, dynamic> requestBody = {
+      "email":EmailAddress,
+      "OTP": Otp,
+      "password":_confirmPasswordTEcontroller.text
+    };
+
+    final NetworkResponse response =await NetworkCaller.postProduct(url: Urls.SetPassword, body:requestBody);
+    _setPasswordInprogress = false;
+    setState(() {});
+
+    if(response.isSuccess){
+      showSnackMessage(context, 'Password Changed');
+    }
+    else{
+      showSnackMessage(context, response.errorMessage, true);
+    }
+  }
+
+
 }
