@@ -141,11 +141,16 @@ class _EmailVerifcationScreenState extends State<EmailVerifcationScreen> {
      setState(() {});
      
      if(response.isSuccess){
-       Navigator.push(context, MaterialPageRoute(builder: (context)=> const OtpVerifcationScreen()));
+       Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>const OtpVerifcationScreen()));
      }else{
        showSnackMessage(context, response.errorMessage, true);
     }
     
 }
+  @override
+  void dispose() {
+    _emailTECOntroller.dispose();
+    super.dispose();
+  }
 
 }

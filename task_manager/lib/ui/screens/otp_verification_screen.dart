@@ -157,11 +157,16 @@ class _OtpVerifcationScreenState extends State<OtpVerifcationScreen> {
     setState(() {});
 
     if(response.isSuccess){
-      Navigator.push(context, MaterialPageRoute(builder: (context)=>const SetPasswordScreen()));
+      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>const SetPasswordScreen()));
     }else{
       showSnackMessage(context, response.errorMessage, true);
     }
 
+  }
+  @override
+  void dispose() {
+    _OTPTECOntroller.dispose();
+    super.dispose();
   }
 
 

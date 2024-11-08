@@ -100,6 +100,7 @@ class _SetPasswordScreenState extends State<SetPasswordScreen> {
         children: [
           TextFormField(
             controller: _passwordTEController,
+            obscureText: true,
             autovalidateMode: AutovalidateMode.onUserInteraction,
             decoration: const InputDecoration(
               hintText: 'Password',
@@ -115,6 +116,7 @@ class _SetPasswordScreenState extends State<SetPasswordScreen> {
 
           TextFormField(
             controller: _confirmPasswordTEcontroller,
+            obscureText: true,
             autovalidateMode: AutovalidateMode.onUserInteraction,
             decoration: const InputDecoration(
               hintText: 'Confirm Password',
@@ -158,17 +160,29 @@ class _SetPasswordScreenState extends State<SetPasswordScreen> {
       "password":_confirmPasswordTEcontroller.text
     };
 
+
     final NetworkResponse response =await NetworkCaller.postProduct(url: Urls.SetPassword, body:requestBody);
     _setPasswordInprogress = false;
     setState(() {});
 
     if(response.isSuccess){
+      _clearTextFields();
       showSnackMessage(context, 'Password Changed');
     }
     else{
       showSnackMessage(context, response.errorMessage, true);
     }
   }
+  void _clearTextFields() {
+    _confirmPasswordTEcontroller.clear();
+    _passwordTEController.clear();
+  }
 
+  @override
+  void dispose() {
+    _confirmPasswordTEcontroller.dispose();
+    _passwordTEController.dispose();
+    super.dispose();
+  }
 
 }

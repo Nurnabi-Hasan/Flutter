@@ -7,6 +7,7 @@ import 'package:task_manager/data/models/network_response.dart';
 import 'package:task_manager/data/services/network_caller.dart';
 import 'package:task_manager/data/utils/urls.dart';
 import 'package:task_manager/ui/controler/auth_controller.dart';
+import 'package:task_manager/ui/widget/center-circular_progress_indicatore.dart';
 import 'package:task_manager/ui/widget/showscakmessage.dart';
 import 'package:task_manager/ui/widget/tm_app_bar.dart';
 
@@ -163,9 +164,13 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
 
           const SizedBox(height: 24),
 
-          ElevatedButton(
-            onPressed: _onTapUpdateButton,
-            child: const Text('Update'),
+          Visibility(
+            visible: !_inProgress,
+            replacement: CenteredCircularProgressIndicator(),
+            child: ElevatedButton(
+              onPressed: _onTapUpdateButton,
+              child: const Text('Update'),
+            ),
           ),
           const SizedBox(height: 16),
         ],

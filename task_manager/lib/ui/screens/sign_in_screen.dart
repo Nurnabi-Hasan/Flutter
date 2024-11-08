@@ -190,8 +190,13 @@ class _SignInScreenState extends State<SignInScreen> {
         showSnackMessage(context, response.errorMessage, true);
     }
   }
-  
-  
+
+  @override
+  void dispose() {
+    _emailTEController.dispose();
+    _passwordTEController.dispose();
+    super.dispose();
+  }
   
   
 }
